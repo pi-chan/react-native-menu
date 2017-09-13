@@ -18,10 +18,14 @@ module.exports = (React, ReactNative, { model }) => {
     onPress() {
       if (!this.props.disabled) {
         if(this.props.onMenuPress) {
-          this.props.onMenuPress();
+          this.props.onMenuPress(() => {
+            const { menuController, getClosestMenuName } = this.context;
+            menuController.toggle(getClosestMenuName());
+          });
+        } else {
+          const { menuController, getClosestMenuName } = this.context;
+          menuController.toggle(getClosestMenuName());
         }
-        const { menuController, getClosestMenuName } = this.context;
-        menuController.toggle(getClosestMenuName());
       }
     },
     render() {
