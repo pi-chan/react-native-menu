@@ -6,7 +6,7 @@ module.exports = (React, ReactNative, { model }) => {
     propTypes: {
       disabled: React.PropTypes.bool,
       renderTouchable: React.PropTypes.func,
-      onMenuToggle: React.PropTypes.func,
+      onMenuPress: React.PropTypes.func,
     },
     getDefaultProps() {
       return {disabled: false}
@@ -17,8 +17,8 @@ module.exports = (React, ReactNative, { model }) => {
     },
     onPress() {
       if (!this.props.disabled) {
-        if(this.props.onMenuToggle) {
-          this.props.onMenuToggle();
+        if(this.props.onMenuPress) {
+          this.props.onMenuPress();
         }
         const { menuController, getClosestMenuName } = this.context;
         menuController.toggle(getClosestMenuName());
